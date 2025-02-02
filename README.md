@@ -8,7 +8,7 @@ A data modeling **MongoDB** library for **Python**
 1. Install the python package via pip:
 
 ```bash
-pip install mongodb_data_layer
+pip install mongodb-data-layer
 ```
 **Note**: It is better to create a python virtual environment...
 
