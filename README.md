@@ -52,3 +52,5 @@ class Test(BaseMongoModel):
 <p>This library is currently in development. Feel free to contribute.</p>
 
 <hr />
+
+Official repository: <a href="https://github.com/nojram00/mongodb-data-layer">https://github.com/nojram00/mongodb-data-layer</a>
