@@ -8,7 +8,7 @@ A data modeling **MongoDB** library for **Python**
 1. Install the python package via pip:
 
 ```bash
-pip install mongodb-data-layer
+pip install mdb-models
 ```
 **Note**: It is better to create a python virtual environment...
 
@@ -32,7 +32,7 @@ generate-model /models/test_model.py  # where '/models/test_model.py' is your fi
 
 ```python
 #A MongoDB model for the tests collection
-from mongodb_data_layer.base import BaseMongoModel
+from mdb_models.base import BaseMongoModel
 
 class Test(BaseMongoModel):
     
