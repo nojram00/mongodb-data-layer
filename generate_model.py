@@ -1,4 +1,4 @@
-from mongodb_data_layer.templates import model_template
+from .templates import model_template
 import argparse
 import os
 
