@@ -21,26 +21,36 @@ class BaseMongoModel:
 
     __pipeline : list = []
 
-    def __new__(cls):
+    def __new__(cls, *args, **kwargs):
         
         return super().__new__(cls)
 
-    def __init__(self):
+    def __init__(self, **data):
         if self.collection_name is None:
             self.collection_name = snake(f"{self.__class__.__name__}s")
 
         # Initialize the collection
+        self.data = data
         self.collection = create_connection()[self.collection_name]
-        
+    
+    @classmethod
+    def create(cls, **data):
+        """
+        Create a new document.
 
-    def save(self, **data):
+        Args:
+            **data: The data to be saved.
+        """
+        return cls(**data).save()
+
+    def save(self):
         """
         Save a document to the collection.
 
         Args:
             **data: The data to be saved.
         """
-        inserted = self.collection.insert_one(data)
+        inserted = self.collection.insert_one(self.data)
         return inserted.inserted_id
     
     @classmethod
@@ -51,7 +61,44 @@ class BaseMongoModel:
         Args:
             id: The id of the document to find.
         """
-        return cls.collection.find_one({'_id': id})
+        return cls().collection.find_one({'_id': id})
+    
+    @classmethod
+    def find(cls, query):
+        """
+        Find a document by query.
+
+        Args:
+            query: The query to find.
+        """
+        return cls().collection.find_one(query)
+    
+    @classmethod
+    def delete(cls, id):
+        """
+        Delete a document by id.
+
+        Args:
+            id: The id of the document to delete.
+        """
+        return cls().collection.delete_one({'_id': id})
+    
+    @classmethod
+    def delete_many(cls, query):
+        """
+        Delete multiple documents by query.
+
+        Args:
+            query: The query to delete.
+        """
+        return cls().collection.delete_many(query)
+    
+    @classmethod
+    def all(cls):
+        """
+        Get all documents in the collection.
+        """
+        return cls().collection.find()
     
     @classmethod
     def join(cls, collection, local_field, foreign_field, as_field):
