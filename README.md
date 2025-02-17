@@ -25,7 +25,11 @@ pip install mdb-models
 3. To create a model you can simply enter this command on a command promt:
 
 ```bash
-generate-model /models/test_model.py  # where '/models/test_model.py' is your file path and file name
+generate-model /models/test.py  # where '/models/test_model.py' is your file path and file name
+
+# ============== or ===============
+
+generate-authmodel /models/user.py # creates an authenticatable model
 ```
 
 4. It will generate a file like this:
